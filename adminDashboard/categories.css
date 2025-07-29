@@ -1,0 +1,93 @@
+/* ===== Category List Styles (Similar to Product List) ===== */
+#categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.category-card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.category-card:hover {
+  transform: scale(1.03);
+}
+
+.category-card h3 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+
+.category-card button {
+  margin: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-card .edit-btn {
+  background-color: #ffc107;
+  color: white;
+}
+
+.category-card .delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* ===== Category Form Styles (Similar to Product Form) ===== */
+#categoryForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#categoryForm label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#categoryForm input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+#categoryForm input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+#categoryForm button {
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#categoryForm button:hover {
+  background: #0056b3;
+}
