@@ -74,6 +74,10 @@ for (const element of totalPriceElemnts) {
         var spanEle = ParentDiv.querySelector("span")
         var productPrice = ParentDiv.getAttribute("data-ProductPrice")
         spanEle.innerText = `totlal peice : $${productPrice * element.value}`
+        // Remove totlal price span before create it again
+        var totlaPriceSpan = document.querySelector("#TotalPrcieContainet span")
+        totlaPriceSpan.remove()
+        addPrice()
     })
 
 }
@@ -125,4 +129,48 @@ function addButtonsOrders() {
 }
 addButtonsOrders()
 
+
+function addPrice() {
+    var priceElments = document.querySelectorAll(".cardProduct span")
+    var sum = 0
+    for (const element of priceElments) {
+        console.log(element.innerHTML)
+        var lastIndexbeforeNumber = element.innerHTML.indexOf("$")
+        var priceOneCard = element.innerHTML.substring(lastIndexbeforeNumber + 1, element.innerHTML.length)
+        console.log({ priceOneCard })
+        sum += Number(priceOneCard)
+    }
+    var totalPriceELement = document.createElement("span")
+    totalPriceELement.innerText = `total Price : ${sum}`
+    var TotalPrcieContainet = document.getElementById("TotalPrcieContainet")
+    TotalPrcieContainet.appendChild(totalPriceELement)
+}
+
+addPrice()
 // document.querySelector()
+
+
+
+var submitButton = document.querySelector(".button-container")
+
+submitButton.addEventListener("click", () => {
+    var qunatities = []
+    console.log("Event trigger")
+    var quantityElments = document.querySelectorAll(`.cardProduct input[type="number"]`)
+
+    for (const element of quantityElments) {
+        qunatities.push(element.value)
+    }
+
+    var allproductsString = localStorage.getItem("cart")
+    var allproducts = JSON.parse(allproductsString)
+    for (let index = 0; index < allproducts.length; index++) {
+        allproducts[index].quantity = Number(qunatities[index])
+    }
+    localStorage.removeItem("cart")
+    localStorage.setItem("cart",JSON.stringify(allproducts))
+    location.assign("./placingOrder.html")
+})
+
+
+

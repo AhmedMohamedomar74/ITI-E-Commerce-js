@@ -18,6 +18,8 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     background-color: white;
     border: 1px solid #e0e0e0;
+    position: relative;
+    padding-bottom: 40px; 
 }
 
 /* Product image styling */
@@ -113,7 +115,14 @@
         margin-right: 0;
     }
 }
-
+.cardProduct span {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    font-size: 14px;
+    color: #666;
+    font-weight: normal;
+}
 /* Add this to your cart.css file */
 
 /* Submit and Cancel buttons container */
@@ -137,6 +146,7 @@
     max-width: 200px;
     text-align: center;
 }
+
 
 /* Submit button styling */
 .submit-btn {
@@ -178,4 +188,21 @@
     .submit-btn, .cancel-btn {
         max-width: 100%;
     }
+}
+
+#TotalPrcieContainet {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#TotalPrcieContainet span {
+    color: #2a59fe;
+    font-size: 20px;
+    margin-left: 10px;
 }
