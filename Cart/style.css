@@ -1,0 +1,210 @@
+:root {
+  --color-primary: #3498db;      /* أزرق رئيسي */
+  --color-secondary: #2c3e50;    /* رمادي غامق */
+  --color-accent: #5dade2;       /* أزرق فاتح */
+  --color-danger: #ff3b30;       /* أحمر للزر الحذف */
+  --bg-color: #f9f9f9;           /* خلفية فاتحة */
+  --bg-light: #f8f9fa;           /* خلفية أفتح */
+  --text-color: #222;
+  --text-light: #666;
+  --border-color: #e0e0e0;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --font-main: 'Poppins', sans-serif;
+  --transition: all 0.3s ease-in-out;
+}
+
+/* ===== Common Styles ===== */
+#cartContainer, #wishlistContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: var(--font-main);
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.submit-btn, .cancel-btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-weight: 500;
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+    font-family: var(--font-main);
+}
+
+.submit-btn {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.cancel-btn {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.cancel-btn:hover {
+    background-color: var(--border-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.submit-btn:active, .cancel-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== Cart Specific Styles ===== */
+.cardProduct, .cardwishlist {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    background-color: white;
+    border: 1px solid var(--border-color);
+    position: relative;
+    padding-bottom: 40px;
+    transition: var(--transition);
+}
+
+.cardProduct:hover, .cardwishlist:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cardProduct img, .cardwishlist img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.cardProduct div, .cardwishlist div {
+    flex-grow: 1;
+}
+
+.cardProduct h3, .cardwishlist h3 {
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.cardProduct p, .cardwishlist p {
+    font-size: 16px;
+    color: var(--color-primary);
+    margin: 0;
+    font-weight: bold;
+}
+
+.cardProduct .delete-btn, .cardwishlist .delete-btn {
+    background: none;
+    border: none;
+    color: var(--color-danger);
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 20px;
+    transition: var(--transition);
+}
+
+.cardProduct .delete-btn:hover, .cardwishlist .delete-btn:hover {
+    opacity: 0.8;
+}
+
+.cardProduct input[type="number"], .cardwishlist input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.cardProduct span, .cardwishlist span {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: normal;
+}
+
+#TotalPrcieContainet {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--bg-light);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#TotalPrcieContainet span {
+    color: var(--color-primary);
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 600px) {
+    .cardProduct, .cardwishlist {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    
+    .cardProduct img, .cardwishlist img {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .cardProduct .delete-btn, .cardwishlist .delete-btn {
+        margin-top: 10px;
+        margin-right: 0;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .submit-btn, .cancel-btn {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    #cartContainer, #wishlistContainer {
+        padding: 15px;
+    }
+    
+    .cardProduct, .cardwishlist {
+        padding: 12px;
+    }
+    
+    .cardProduct img, .cardwishlist img {
+        width: 60px;
+        height: 60px;
+    }
+}
