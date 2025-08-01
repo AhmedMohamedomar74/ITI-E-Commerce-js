@@ -1,176 +1,165 @@
-/**
- * Reterive Date 
- * make card for each product 
- *      make delte and qunatity 
- * handle two requests cancle and supmit 
- */
+const cartContainer = document.getElementById("cartContainer");
+const totalPriceContainer = document.getElementById("TotalPrcieContainet");
 
-var cartContainer = document.getElementById("cartContainer")
-
-function ReteriveData() {
-    productCartString = localStorage.getItem("cart")
-    productCartJSONs = JSON.parse(productCartString)
-    return productCartJSONs
+// Reterive Data
+function getCartData() {
+    const cartData = localStorage.getItem("cart");
+    return cartData ? JSON.parse(cartData) : [];
 }
 
-var products = ReteriveData()
-console.log(products)
+function calculateProductTotal(price, quantity = 1) {
+    console.log({price,quantity})
+    return price * quantity;
+}
 
-function cartCard(products) {
+function formatPrice(price) {
+    return `$${price.toFixed(2)}`;
+}
+
+function createProductCard(product) {
+    const card = document.createElement("div");
+    card.setAttribute("class","cardProduct")
+    card.dataset.productPrice = product.price
+    // card.setAttribute("data-productPrice",`${product.price}`)
+    card.dataset.productId = product.id
+    // card.setAttribute("data-productId",`${product.id}`)
+
+    const quantity = product.quantity || 1;
+    const totalPrice = calculateProductTotal(product.price, quantity);
+    
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <div>
+            <h3>${product.title}</h3>
+            <p>${formatPrice(product.price)}</p>
+        </div>
+        <input type="number" min="1" value="${quantity}">
+        <button class="delete-btn">Delete</button>
+        <span>Total price: ${formatPrice(totalPrice)}</span>
+    `;
+    
+    return card;
+}
+
+
+function renderProducts(products) {
+    cartContainer.innerHTML = '';
     for (const element of products) {
-        // create parentDiv (card Product)
-        var cardProduct = document.createElement("div")
-        cardProduct.setAttribute("data-productPrice", `${element.price}`)
-        cardProduct.setAttribute("data-productID", `${element.id}`)
-        cardProduct.setAttribute("class", "cardProduct")
-        //add image
-        var imgPrduct = document.createElement("img")
-        imgPrduct.src = element.image
-        // add title
-        var title = document.createElement("h3")
-        title.innerText = element.title
-        // add price
-        var price = document.createElement("p")
-        price.innerText = `$${element.price}`
-        // add input to quantity
-        var textPox = document.createElement("input")
-        textPox.type = "number"
-        textPox.setAttribute("min", 1)
-        if (element.hasOwnProperty("quantity")) {
-            textPox.value = element.quantity
-        }
-        else {
-            textPox.value = 1
-        }
-        // add totlal price
-        var totalprice = document.createElement("span")
-        if (element.hasOwnProperty("quantity")) {
-            totalprice.innerText = `totlal peice : $${element.quantity * element.price}`
-        }
-        else {
-            totalprice.innerText = `totlal peice : $${element.price}`
-        }
-        // add delete elemets 
-        var deleteButton = document.createElement("button")
-        deleteButton.setAttribute("class", "delete-btn")
-        deleteButton.innerText = "Delete"
-        //add all elemets in card product 
-        cardProduct.append(imgPrduct, title, price, textPox, deleteButton, totalprice)
-        // add card product to cartContainer
-        cartContainer.appendChild(cardProduct)
+        cartContainer.appendChild(createProductCard(element));
     }
-}
-
-cartCard(products)
-
-
-var totalPriceElemnts = document.querySelectorAll(`.cardProduct input[type="number"]`)
-console.log(totalPriceElemnts)
-for (const element of totalPriceElemnts) {
-    element.addEventListener("change", (event) => {
-        console.log("on input trigger")
-        console.log(element.value)
-        var ParentDiv = event.target.parentElement
-        var spanEle = ParentDiv.querySelector("span")
-        var productPrice = ParentDiv.getAttribute("data-ProductPrice")
-        spanEle.innerText = `totlal peice : $${productPrice * element.value}`
-        // Remove totlal price span before create it again
-        var totlaPriceSpan = document.querySelector("#TotalPrcieContainet span")
-        totlaPriceSpan.remove()
-        addPrice()
-    })
-
+    addActionButtons();
 }
 
 
-var deleteButtons = document.querySelectorAll(`.cardProduct .delete-btn`)
-console.log(deleteButtons)
+function updateCartTotal() {
+    const priceElements = document.querySelectorAll(".cardProduct span");
+    let total = 0;
+    
+    // priceElements.forEach(element => {
+    //     const priceText = element.textContent;
+    //     const priceValue = parseFloat(priceText.match(/\d+\.\d{2}/)[0]);
+    //     total += priceValue;
+    // });
 
-for (const element of deleteButtons) {
-    element.addEventListener("click", (event) => {
-        console.log("deletButton trigger")
-        var parentElement = event.target.parentElement
-        console.log({ "parent": parentElement })
-        var productRemoveIndex = products.findIndex((product) => {
-            console.log({ "ProductIdArr": product.id, "RequiredID": parentElement.getAttribute("data-productid") })
-            return product.id == parentElement.getAttribute("data-productid")
-        })
-        console.log({ "buttonRquired": productRemoveIndex })
-        products.splice(productRemoveIndex, 1)
-        localStorage.removeItem("cart")
-        localStorage.setItem("cart", JSON.stringify(products))
-        parentElement.remove()
-    })
-}
-
-
-function addSumpitButton() {
-    var submitButton = document.createElement("button")
-    submitButton.setAttribute("class", "submit-btn")
-    submitButton.innerText = `Submit`
-    cartContainer.appendChild(submitButton)
-}
-
-
-function addButtonsOrders() {
-    var buttonContainer = document.createElement("div");
-    buttonContainer.setAttribute("class", "button-container");
-
-    var submitButton = document.createElement("button");
-    submitButton.setAttribute("class", "submit-btn");
-    submitButton.innerText = `Submit Order`;
-
-    var cancelButton = document.createElement("button");
-    cancelButton.setAttribute("class", "cancel-btn");
-    cancelButton.innerText = `Cancel`;
-
-    buttonContainer.append(cancelButton, submitButton);
-    cartContainer.appendChild(buttonContainer);
-}
-addButtonsOrders()
-
-
-function addPrice() {
-    var priceElments = document.querySelectorAll(".cardProduct span")
-    var sum = 0
-    for (const element of priceElments) {
-        console.log(element.innerHTML)
+    for (const element of priceElements) {
+        // var priceString = element.innerHTML
+        // console.log({priceString})
         var lastIndexbeforeNumber = element.innerHTML.indexOf("$")
         var priceOneCard = element.innerHTML.substring(lastIndexbeforeNumber + 1, element.innerHTML.length)
-        console.log({ priceOneCard })
-        sum += Number(priceOneCard)
+        total += Number(priceOneCard)
     }
-    var totalPriceELement = document.createElement("span")
-    totalPriceELement.innerText = `total Price : ${sum}`
-    var TotalPrcieContainet = document.getElementById("TotalPrcieContainet")
-    TotalPrcieContainet.appendChild(totalPriceELement)
+    
+    totalPriceContainer.innerHTML = `<span>Total Price: ${formatPrice(total)}</span>`;
 }
 
-addPrice()
-// document.querySelector()
+function addActionButtons() {
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
+    
+    buttonContainer.innerHTML = `
+        <button class="cancel-btn">Cancel</button>
+        <button class="submit-btn">Submit Order</button>
+    `;
+    
+    cartContainer.appendChild(buttonContainer);
+    setupEventListeners();
+}
+
+
+function setupEventListeners() {
+    setupQuantityListeners();
+    setupDeleteListeners();
+    setupSubmitListener();
+    setupCancelListener();
+}
+
+
+function setupQuantityListeners() {
+    document.querySelectorAll('.cardProduct input[type="number"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+            console.log("Qunatity event trigger")
+            const parentCard = e.target.closest('.cardProduct');
+            const price = parseFloat(parentCard.dataset.productPrice);
+            const quantity = parseInt(e.target.value);
+            const totalSpan = parentCard.querySelector('span');
+            
+            totalSpan.textContent = `Total price: ${formatPrice(calculateProductTotal(price, quantity))}`;
+            console.log(totalSpan.textContent)
+            updateCartTotal();
+        });
+    });
+}
+
+function setupDeleteListeners() {
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const parentCard = e.target.closest('.cardProduct');
+            const productId = parentCard.dataset.productId;
+            
+            let products = getCartData();
+            products = products.filter(product => product.id != productId);
+            
+            localStorage.removeItem("cart")
+            localStorage.setItem("cart", JSON.stringify(products));
+            parentCard.remove();
+            updateCartTotal();
+        });
+    });
+}
 
 
 
-var submitButton = document.querySelector(".button-container")
+function setupSubmitListener() {
+    document.querySelector('.submit-btn')?.addEventListener('click', () => {
+        const quantities = [];
+        document.querySelectorAll('.cardProduct input[type="number"]').forEach(input => {
+            quantities.push(parseInt(input.value));
+        });
+        
+        let products = getCartData();
+        for (let index = 0; index < products.length; index++) {
+            products[index].quantity = quantities[index];
+        }
+        localStorage.removeItem("cart")
+        localStorage.setItem("cart", JSON.stringify(products));
+        window.location.href = "./placingOrder.html";
+    });
+}
 
-submitButton.addEventListener("click", () => {
-    var qunatities = []
-    console.log("Event trigger")
-    var quantityElments = document.querySelectorAll(`.cardProduct input[type="number"]`)
-
-    for (const element of quantityElments) {
-        qunatities.push(element.value)
-    }
-
-    var allproductsString = localStorage.getItem("cart")
-    var allproducts = JSON.parse(allproductsString)
-    for (let index = 0; index < allproducts.length; index++) {
-        allproducts[index].quantity = Number(qunatities[index])
-    }
-    localStorage.removeItem("cart")
-    localStorage.setItem("cart",JSON.stringify(allproducts))
-    location.assign("./placingOrder.html")
-})
+function setupCancelListener() {
+    document.querySelector('.cancel-btn')?.addEventListener('click', () => {
+        console.log("Order canceled");
+        // Add any cancel functionality here
+        // it should go back from history
+        history.back()
+    });
+}
 
 
+function initCart() {
+    const products = getCartData();
+    renderProducts(products);
+    updateCartTotal();
+}
 
+initCart()
