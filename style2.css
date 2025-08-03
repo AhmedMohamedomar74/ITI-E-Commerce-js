@@ -1,0 +1,133 @@
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --primary:rgb(0, 113, 219);
+    --lite:rgb(52, 135, 212);
+    --secondry:rgb(107, 107, 107);
+    --second:rgb(75, 75, 75);
+    --white:#fff;
+}
+body{
+    background-image: linear-gradient(to right, #fcfafb , #c5c5c5); ;
+}
+
+.rejester{
+    width: 75%;
+    margin: auto;
+    margin-top: 5%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+.rejester h1{
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 0;
+    color: var(--primary);
+}
+.rejester p{
+    color: var(--secondry);
+    margin-top: 4px;
+    font-size: 1.3rem;
+}
+.rejester label{
+    display: block;
+    font-size: 1.6rem;
+    color: var(--secondry);
+    margin-top: 0.6rem;
+}
+.rejester input{
+    border: 0;
+    border-bottom:1px solid var(--secondry) ;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    outline: none;
+    padding: 0.5rem;
+    padding-left: .2rem;
+    color: var(--second);
+   
+}
+.rejester input:focus{
+    outline: var(--secondry);
+     border-radius: 0.5rem;
+    box-shadow: #85abbd94 0px 5px 10px 0;
+    border: 0;
+}
+.rejester button{
+    border: 0;
+    font-size: 1.3rem;
+    background-color: var(--primary);
+    padding: 0.6rem 1rem;
+    color: var(--white);
+    border-radius:0.5rem;
+    margin:1rem auto;
+    cursor: pointer;
+    box-shadow: #1c3f81cb 0px 2px 10px 0px;
+    margin-bottom: 2rem;
+
+}
+.login{
+    width: 55%;
+}
+/* .rejester button:hover{
+    background-color: var(--lite);
+} */
+/* button:disabled {
+    background-color:rgb(120, 175, 219);
+    cursor: not-allowed;
+} */
+span{
+    color: var(--primary);
+}
+.col-6{
+    width: 47%;
+}
+.col-6 img{
+    width: 100%;
+    height: 100%;
+      object-fit:cover;
+}
+
+.rejester a{
+    font-size: 1.3rem;
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@media (max-width:810px){
+    .rejester{
+        width: 90%;
+        display: block;
+        text-align: center;
+      
+    }
+    .rejester h1{
+        padding-top: 7%;
+    font-size: 3rem;
+    }
+
+    .col-6 img{
+        display: none;
+    }
+    .col-6{
+        width: 90%;
+        padding-left: 1rem;
+        padding: auto;
+    }
+    
+   
+}
+@media (max-width:990px) {
+      .login{
+        width: 90%;
+      
+      
+    }
+}
