@@ -21,6 +21,7 @@ var httpGetShippingMethods = new XMLHttpRequest()
 var cupponReq = new XMLHttpRequest()
 var discounValue = 0
 var chippingMethodsList = []
+var allProcutsInCart
 
 function checkCuppon(couponCode)
 {
@@ -127,7 +128,7 @@ function handleSubmitOrder() {
             products: allProcutsInCart,
             shipping_method: shippingMethodOpject,
             total_price: formatPrice(total_price),
-            user_id: Math.floor(Math.random() * 10) + 1
+            user_id: JSON.parse(sessionStorage.getItem("user")).id
         }
         console.log(Order)
         httpGetShippingMethods.open("POST", "http://localhost:3000/orders")
@@ -163,7 +164,7 @@ function printTotalPrice(totalprice) {
 
 function getTotalPrice() {
     var totalPrice = 0
-    var allProcutsInCart = JSON.parse(localStorage.getItem("cart"))
+    allProcutsInCart = JSON.parse(localStorage.getItem("cart"))
 
 
     var shippingMethodId = document.querySelector("#ChippingListContainer select").value
