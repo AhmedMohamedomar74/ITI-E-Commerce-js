@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <div id="OrderDetails"></div>
+    <link href="./placingOrder.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="OrderDetailsContianer"></div>
     <div id="ChippingListContainer"></div>
-    <div id="PriceAndCupponContainer"></div>
+    <div id="PriceAndCupponContainer">
+      <div id="cupponContainer">
+        <label for="cuppon"></label>
+        <input
+          type="text"
+          id="cuppon"
+          placeholder="Enter your cuppon if you have"
+        />
+        <span id="cupponResult"></span>
+        <button>apply coupon</button>
+      </div>
+      <div id="totalPriceContainer">
+        <p>
+
+        </p>
+      </div>
+    </div>
     <div id="ButtonContainer"></div>
     <script src="./placingOrder.js"></script>
-</body>
+  </body>
 </html>

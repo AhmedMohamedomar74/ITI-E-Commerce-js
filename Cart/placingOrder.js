@@ -7,79 +7,204 @@
 
 
 /**
- * {
- *      "Products" : 
- *                  {
- *                      { "id" : ,
- *                         "name" : ,
- *                          "Qunatity" :
- *                         }
- *                      }
- * }
+ * on enter cuppn send get request 
+ *      if valid supstract the price and chnage the total price
+ *      else print in the span not valid
+ * 
  */
+var OrderDetailsContainer = document.getElementById("OrderDetailsContianer")
 var ChippingListContainerDiv = document.getElementById("ChippingListContainer")
 var ButtonContainer = document.getElementById("ButtonContainer")
+var priceAndCupponContainer = document.getElementById("PriceAndCupponContainer")
+var totalPriceElement = document.querySelector("#totalPriceContainer p")
 var httpGetShippingMethods = new XMLHttpRequest()
+var cupponReq = new XMLHttpRequest()
+var discounValue = 0
 var chippingMethodsList = []
-function reteriveShippingMethods()
+
+function checkCuppon(couponCode)
 {
-    httpGetShippingMethods.open("GET","http://localhost:3000/shipping_methods")
+    cupponReq.open("GET",`http://localhost:3000/coupons?code=${couponCode}`)
+    cupponReq.send()
+    cupponReq.onreadystatechange = function ()
+    {
+        if ((cupponReq.status == 200) && (cupponReq.readyState == 4)) {
+            var coupon = JSON.parse(cupponReq.response)
+            console.log({coupon})
+            if (coupon.length) {
+                var spanCupponResult = document.querySelector("#cupponContainer span")
+                spanCupponResult.innerHTML = `Valid coupon`
+                discounValue = coupon[0].price
+                printTotalPrice(formatPrice(getTotalPrice() - discounValue))
+            }
+            else
+            {
+                var spanCupponResult = document.querySelector("#cupponContainer span")
+                spanCupponResult.innerHTML = `Not valid coupon`
+            }
+        }
+    }
+}
+
+function initSendCupon()
+{
+    var couponButton = document.querySelector("#cupponContainer button")
+    couponButton.addEventListener("click",()=>
+    {
+        var inputCoupon = document.querySelector("#cupponContainer input").value
+        checkCuppon(inputCoupon)
+    })
+}
+
+function handleOnShippingChange()
+{
+    var listShippingElment = ChippingListContainerDiv.querySelector("select")
+    listShippingElment.addEventListener("change",()=>
+    {
+        printTotalPrice(formatPrice(getTotalPrice() - discounValue))
+    })
+
+}
+
+function getCartData() {
+    const cartData = localStorage.getItem("cart");
+    return cartData ? JSON.parse(cartData) : [];
+}
+
+function calculateProductTotal(price, quantity = 1) {
+    return price * quantity;
+}
+
+function formatPrice(price) {
+    return `$${price.toFixed(2)}`;
+}
+
+function createProductCard(product) {
+    const card = document.createElement("div");
+    card.setAttribute("class", "cardProduct")
+    card.dataset.productPrice = product.price
+    card.dataset.productId = product.id
+
+    const quantity = product.quantity || 1;
+    const totalProductPrice = calculateProductTotal(product.price, quantity);
+
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <div>
+            <h3>${product.title}</h3>
+            <p>${formatPrice(product.price)}</p>
+            <span>Qunatity :${quantity}</span>
+        </div>
+        <span>Total price: ${formatPrice(totalProductPrice)}</span>
+    `;
+
+    return card;
+}
+
+function renderProducts(products) {
+    OrderDetailsContainer.innerHTML = '';
+    for (const element of products) {
+        OrderDetailsContainer.appendChild(createProductCard(element));
+    }
+}
+
+function reteriveShippingMethods() {
+    httpGetShippingMethods.open("GET", "http://localhost:3000/shipping_methods")
     httpGetShippingMethods.send()
 }
 
+function handleSubmitOrder() {
+    var submitBtn = document.querySelector(".button-container .submit-btn")
+    submitBtn.addEventListener("click", () => {
+        var shippingMethodId = document.querySelector("#ChippingListContainer select").value
+        var shippingMethodOpject = chippingMethodsList.find((shippingMethod) => {
+            return shippingMethod.id == shippingMethodId
+        })
 
-httpGetShippingMethods.addEventListener("readystatechange",()=>
-{
+
+        var total_price = getTotalPrice()
+        var Order = {
+            products: allProcutsInCart,
+            shipping_method: shippingMethodOpject,
+            total_price: formatPrice(total_price),
+            user_id: Math.floor(Math.random() * 10) + 1
+        }
+        console.log(Order)
+        httpGetShippingMethods.open("POST", "http://localhost:3000/orders")
+        httpGetShippingMethods.setRequestHeader('Content-Type', 'application/json')
+        httpGetShippingMethods.send(JSON.stringify(Order))
+    })
+}
+
+function handleCancelOrder() {
+    var cancelBtn = document.querySelector(".button-container .cancel-btn")
+    cancelBtn.addEventListener("click", () => {
+        history.back()
+    })
+}
+
+function addActionButtons() {
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
+
+    buttonContainer.innerHTML = `
+        <button class="cancel-btn">Cancel</button>
+        <button class="submit-btn">Submit Order</button>
+    `;
+
+    ButtonContainer.appendChild(buttonContainer);
+    handleSubmitOrder();
+    handleCancelOrder()
+}
+
+function printTotalPrice(totalprice) {
+    totalPriceElement.innerHTML = `$${totalprice}`
+}
+
+function getTotalPrice() {
+    var totalPrice = 0
+    var allProcutsInCart = JSON.parse(localStorage.getItem("cart"))
+
+
+    var shippingMethodId = document.querySelector("#ChippingListContainer select").value
+    var shippingMethodOpject = chippingMethodsList.find((shippingMethod) => {
+        return shippingMethod.id == shippingMethodId
+    })
+    for (const element of allProcutsInCart) {
+        totalPrice += element.price
+    }
+    return totalPrice += shippingMethodOpject.price
+}
+
+
+httpGetShippingMethods.addEventListener("readystatechange", () => {
     if ((httpGetShippingMethods.readyState == 4) && (httpGetShippingMethods.status == 200)) {
         chippingMethodsList = JSON.parse(httpGetShippingMethods.response)
         console.log(chippingMethodsList)
         var label = document.createElement("label")
-        label.setAttribute("for","ShippinMethod")
-        label.innerHTML = `Choose SHipping Method  `
+        label.setAttribute("for", "ShippinMethod")
+        label.innerHTML = `Choose Shipping Method  `
         var selectElement = document.createElement("select")
         for (const element of chippingMethodsList) {
             var option = document.createElement("option")
-            option.innerText =  element.name
-            option.setAttribute("value",`${element.id}`)
-            console.log({"id" : element.id})
+            option.innerText = element.name
+            option.setAttribute("value", `${element.id}`)
+            console.log({ "id": element.id })
             selectElement.appendChild(option)
         }
-        ChippingListContainerDiv.append(label,selectElement)
+        ChippingListContainerDiv.append(label, selectElement)
+
+        printTotalPrice(formatPrice(getTotalPrice()))
+        handleOnShippingChange()
     }
 })
 
 reteriveShippingMethods()
+var products = getCartData()
+renderProducts(products)
+
+addActionButtons()
+
+initSendCupon()
 
 
-var sendOrderButton = document.createElement("button")
-sendOrderButton.innerHTML = "sumbit"
-ButtonContainer.appendChild(sendOrderButton)
-
-sendOrderButton.addEventListener("click",()=>
-{
-    var shippingMethodId = document.querySelector("#ChippingListContainer select").value
-    var shippingMethodOpject = chippingMethodsList.find((shippingMethod)=>
-    {
-        return shippingMethod.id == shippingMethodId
-    })
-
-    var allProcutsInCart = JSON.parse(localStorage.getItem("cart"))
-    var totalPrice = 0
-    for (const element of allProcutsInCart) {
-        totalPrice += element.price
-    }
-    totalPrice +=shippingMethodOpject.price
-    // console.log({shippingMethodOpject , allProcutsInCart , totalPrice , "UserID":Math.floor(Math.random() * 10) + 1})
-    // var Order = JSON({shippingMethodOpject , allProcutsInCart , totalPrice , "UserID":Math.floor(Math.random() * 10) + 1})
-    // console.log(Order)
-    var Order = {
-        products : allProcutsInCart,
-        shipping_method : shippingMethodOpject,
-        total_price : totalPrice,
-        user_id : Math.floor(Math.random() * 10) + 1
-    }
-    console.log(Order)
-    httpGetShippingMethods.open("POST","http://localhost:3000/orders")
-    httpGetShippingMethods.setRequestHeader('Content-Type', 'application/json')
-    httpGetShippingMethods.send(JSON.stringify(Order))
-})
