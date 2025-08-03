@@ -2,7 +2,22 @@
 let userNameConfirm = document.getElementById('userNameconfirm');
 let passwordConfirm = document.getElementById('passwordConfirm');
 let logIn = document.getElementById('login');
-var getUserReq = new XMLHttpRequest()
+var getUserReq = new XMLHttpRequest();
+let admink=document.getElementById('adminK');
+let admininner=document.getElementById('admin');
+
+function adminKey(){
+    if(admink.style.display=='block'){
+    admink.style.display='none';
+    admininner.innerHTML='login as admin'
+    }
+    else{
+    admink.style.display='block';
+    admininner.innerHTML=''
+    }
+}
+
+
 logIn.disabled = true;
 
 let users = JSON.parse(localStorage.getItem('users')) || [];

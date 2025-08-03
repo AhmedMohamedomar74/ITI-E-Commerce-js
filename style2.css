@@ -9,6 +9,10 @@
     --second:rgb(75, 75, 75);
     --white:#fff;
 }
+#adminK{
+    display: none;
+
+}
 body{
     background-image: linear-gradient(to right, #fcfafb , #c5c5c5); ;
 }
