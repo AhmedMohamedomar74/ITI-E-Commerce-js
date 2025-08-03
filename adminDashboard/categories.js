@@ -1,3 +1,8 @@
+// const isUserAdmin = sessionStorage.getItem("isadmin");
+// if (isUserAdmin !== "true") {
+//   window.location.href = "../products.html";
+// }
+
 const url = "http://localhost:3000/categories";
 const categoryForm = document.getElementById("categoryForm");
 const categoryName = document.getElementById("categoryName");
