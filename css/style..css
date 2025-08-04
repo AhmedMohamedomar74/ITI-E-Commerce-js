@@ -1,0 +1,13 @@
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background-color: rgb(224, 230, 230);
+}
+.items small{
+    padding: 3px;
+    background-color: rgb(244, 54, 54);
+    width: 80%;
+    border-radius:5px;
+   
+}
+
