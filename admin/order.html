@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Orders</title>
+    <link rel="stylesheet" href="order.css" />
+    <script src="order.js" defer></script>
+  </head>
+  <body>
+    <section id="header">
+      <div id="logo-container">
+        <a href="../products.html">
+          <!-- <img src=".." alt="Logo" class="logo" /> -->
+        </a>
+        <span id="welcome-message"></span>
+      </div>
+      <nav>
+        <ul id="navbar">
+          <li>
+            <a href="../products.html" style="display: none" id="storeSwitch">
+              <i class="fa-solid fa-store" style="margin-right: 8px"></i>
+              Return to Store
+            </a>
+          </li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <!-- <li><a href="users.html">Users</a></li> -->
+          <li><a href="order.html">Orders</a></li>
+          <li>
+            <a href="#" onclick="signOut()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <script>
+      const storeSwitch = document.getElementById("storeSwitch");
+      const userName = sessionStorage.getItem("fullname") || "Admin";
+      const isAdmin = sessionStorage.getItem("isadmin") || false;
+
+      if (isAdmin === "true") {
+        storeSwitch.removeAttribute("style");
+      }
+
+      document.getElementById(
+        "welcome-message"
+      ).textContent = `Welcome, ${userName}`;
+
+      const currentPath = window.location.pathname.split("/").pop();
+      document.querySelectorAll("#navbar a").forEach((link) => {
+        if (link.getAttribute("href").includes(currentPath)) {
+          link.classList.add("active");
+        }
+      });
+
+      function signOut() {
+        sessionStorage.clear();
+        window.location.href = "../products.html";
+      }
+    </script>
+    <header>
+      <h1 style="text-align: center">Orders Dashboard</h1>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-status="all">All</button>
+      <button class="tab-btn" data-status="pendding">Pending</button>
+      <button class="tab-btn" data-status="accepted">Accepted</button>
+      <button class="tab-btn" data-status="rejected">Rejected</button>
+    </div>
+
+    <main>
+      <div id="orders-container"></div>
+    </main>
+  </body>
+</html>
