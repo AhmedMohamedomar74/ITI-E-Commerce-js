@@ -7,10 +7,10 @@
 
 
 /**
- * on enter cuppn send get request 
+ * on enter cuppn send get request
  *      if valid supstract the price and chnage the total price
  *      else print in the span not valid
- * 
+ *
  */
 var OrderDetailsContainer = document.getElementById("OrderDetailsContianer")
 var ChippingListContainerDiv = document.getElementById("ChippingListContainer")
@@ -154,7 +154,7 @@ function handleSubmitOrder() {
         submitOrderReq.send(JSON.stringify(Order));
         // httpGetShippingMethods.send(JSON.stringify(Order))
         // localStorage.removeItem("cart")
-        history.back()
+        // history.back()
     })
 }
 
@@ -232,6 +232,7 @@ submitOrderReq.addEventListener("readystatechange",()=>
         if (submitOrderReq.status == 200 || submitOrderReq.status == 201) {
             // Success - clear cart and go back
             localStorage.removeItem("cart");
+            console.log({order : "send"})
             history.back();
         } else {
             // Handle error

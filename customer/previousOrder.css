@@ -1,0 +1,255 @@
+/* ===== Order Display Styles ===== */
+#orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: var(--font-main);
+}
+
+.order-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.order-container:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.order-id {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.order-status {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-pendding {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-accepted {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-shipped {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status-delivered {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.shipping-info {
+  background-color: var(--bg-light);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.shipping-method {
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.product-card {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  background-color: var(--bg-light);
+  border-radius: 4px;
+}
+
+.product-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-size: 15px;
+  flex-grow: 1;
+}
+
+.product-price {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.total-price {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: right;
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.total-price span {
+  color: var(--color-primary);
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+/* Coupon Section Styles */
+#cupponContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+#cupponContainer input {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-main);
+  flex-grow: 1;
+  max-width: 300px;
+}
+
+#cupponContainer button {
+  padding: 10px 20px;
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: var(--transition);
+}
+
+#cupponContainer button:hover {
+  background-color: var(--color-primary);
+}
+
+#cupponContainer span {
+  font-size: 14px;
+  margin-left: 10px;
+  color: var(--color-danger);
+}
+
+/* Shipping Method Selector */
+#ChippingListContainer {
+  margin-bottom: 20px;
+}
+
+#ChippingListContainer label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+#ChippingListContainer select {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-main);
+  width: 100%;
+  max-width: 300px;
+  background-color: white;
+}
+
+
+/* Add these styles to your existing CSS file */
+.product-quantity {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-top: 5px;
+}
+
+/* Optional: Add a small indicator for the total price per product */
+.product-total {
+  font-size: 14px;
+  color: var(--color-secondary);
+  margin-top: 5px;
+  font-weight: 500;
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  #cupponContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #cupponContainer input,
+  #ChippingListContainer select {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  #orders-list {
+    padding: 15px;
+  }
+
+  .order-container {
+    padding: 15px;
+  }
+
+  .product-card {
+    padding: 12px;
+  }
+}
