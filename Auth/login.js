@@ -91,7 +91,7 @@ getUserReq.addEventListener("readystatechange", () => {
             if (adminLogin == true) {
                 window.location.href = "./../admin/order.html";
             } else {
-                window.location.href = "products.html";
+                window.location.href = "./../customer/Home.html";
             }
         }
         else

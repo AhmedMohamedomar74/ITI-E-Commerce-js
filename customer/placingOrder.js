@@ -233,7 +233,8 @@ submitOrderReq.addEventListener("readystatechange",()=>
             // Success - clear cart and go back
             localStorage.removeItem("cart");
             console.log({order : "send"})
-            history.back();
+            // history.back();
+            location.assign("./Home.html")
         } else {
             // Handle error
             console.error("Order submission failed:", submitOrderReq.statusText);

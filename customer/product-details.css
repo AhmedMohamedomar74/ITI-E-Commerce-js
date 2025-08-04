@@ -1,0 +1,103 @@
+/* === Product Details Page === */
+.product-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.product-details-card {
+  display: flex;
+  gap: 30px;
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-details-card img {
+  width: 350px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.details h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.price {
+  font-size: 22px;
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.buttons .btn-cart,
+.buttons .btn-wishlist {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.btn-cart {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-cart:hover {
+  background-color: #0056b3;
+}
+
+.btn-wishlist {
+  background-color: #ffc107;
+  color: white;
+}
+
+.btn-wishlist:hover {
+  background-color: #e0a800;
+}
+
+/* Back button */
+button[onclick="window.history.back()"] {
+  display: block;
+  margin: 20px auto;
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[onclick="window.history.back()"]:hover {
+  background: #007bff;
+  color: white;
+}

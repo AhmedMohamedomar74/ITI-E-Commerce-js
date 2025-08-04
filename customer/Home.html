@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Home</title>
+  <link rel="stylesheet" href="Homestyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+<div class="logo">
+  <i class="fa-solid fa-store"></i> MyStore
+</div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="./previousOrders.html">Previous Orders</a></li>
+      <!-- <li><a href="contact.html">Contact</a></li> -->
+    </ul>
+
+    <!-- Categories Dropdown -->
+   <div class="datalist-container">
+  <input list="categories" id="categoryInput" placeholder="Choose category...">
+  <datalist id="categories">
+    <!-- الكاتيجوري هتيجي من JS -->
+  </datalist>
+</div>
+    <!-- Icons Section -->
+    <div class="icons">
+      <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+      <a href="./wishlist.html"><i class="fas fa-heart"></i></a>
+    </div>
+  </nav>
+
+  <section class="products-section">
+    <div id="products" class="products-container">
+
+    </div>
+  </section>
+
+
+ <script src="Home.js"></script>
+</body>
+</html>

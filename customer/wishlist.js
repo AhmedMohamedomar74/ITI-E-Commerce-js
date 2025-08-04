@@ -1,7 +1,7 @@
 const cartContainer = document.getElementById("wishlistContainer");
 // Reterive Data
 function getCartData() {
-    const cartData = localStorage.getItem("wishlist");
+    const cartData = localStorage.getItem("wishList");
     return cartData ? JSON.parse(cartData) : [];
 }
 
