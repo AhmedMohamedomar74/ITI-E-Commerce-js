@@ -1,16 +1,35 @@
+:root {
+  --color-primary: #3498db;      /* أزرق رئيسي */
+  --color-secondary: #2c3e50;    /* رمادي غامق */
+  --color-accent: #5dade2;       /* أزرق فاتح */
+  --color-danger: #ff3b30;       /* أحمر للزر الحذف */
+  --color-success: #2ecc71;      /* أخضر للنجاح */
+  --bg-color: #f9f9f9;           /* خلفية فاتحة */
+  --bg-light: #f8f9fa;           /* خلفية أفتح */
+  --bg-white: #ffffff;           /* خلفية بيضاء */
+  --text-color: #222;
+  --text-light: #666;
+  --border-color: #e0e0e0;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --font-main: 'Poppins', sans-serif;
+  --transition: all 0.3s ease-in-out;
+  --border-radius: 8px;
+}
+
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-main);
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-color);
 }
 
 h1, h2, h3 {
-    color: #2c3e50;
+    color: var(--color-secondary);
 }
 
 /* Order Sections */
@@ -18,9 +37,9 @@ h1, h2, h3 {
 #ChippingListContainer,
 #PriceAndCupponContainer,
 #ButtonContainer {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -32,7 +51,7 @@ h1, h2, h3 {
 
 #OrderDetailsContianer h2 {
     margin-top: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
 }
 
@@ -41,7 +60,12 @@ h1, h2, h3 {
     align-items: center;
     gap: 20px;
     padding: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.cardProduct:hover {
+    background-color: var(--bg-light);
 }
 
 .cardProduct img {
@@ -61,12 +85,12 @@ h1, h2, h3 {
 
 .cardProduct p, .cardProduct span {
     margin: 5px 0;
-    color: #666;
+    color: var(--text-light);
 }
 
 .cardProduct > span:last-child {
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--color-secondary);
 }
 
 /* Shipping Method Section */
@@ -79,9 +103,16 @@ h1, h2, h3 {
 #ChippingListContainer select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+    transition: var(--transition);
+}
+
+#ChippingListContainer select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(93, 173, 226, 0.2);
 }
 
 /* Price and Coupon Section */
@@ -99,34 +130,43 @@ h1, h2, h3 {
 
 #cupponContainer input {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+    transition: var(--transition);
+}
+
+#cupponContainer input:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(93, 173, 226, 0.2);
 }
 
 #cupponContainer button {
     padding: 10px 15px;
-    background-color: #3498db;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    transition: var(--transition);
 }
 
 #cupponContainer button:hover {
-    background-color: #2980b9;
+    background-color: var(--color-secondary);
+    box-shadow: var(--shadow-hover);
 }
 
 #cupponResult {
-    color: #27ae60;
+    color: var(--color-success);
     font-weight: bold;
 }
 
 #totalPriceContainer p {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--color-secondary);
     margin: 0;
 }
 
@@ -143,25 +183,27 @@ h1, h2, h3 {
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: var(--transition);
 }
 
 .button-container .cancel-btn {
-    background-color: #e74c3c;
+    background-color: var(--color-danger);
     color: white;
 }
 
 .button-container .cancel-btn:hover {
-    background-color: #c0392b;
+    opacity: 0.9;
+    box-shadow: var(--shadow-hover);
 }
 
 .button-container .submit-btn {
-    background-color: #2ecc71;
+    background-color: var(--color-success);
     color: white;
 }
 
 .button-container .submit-btn:hover {
-    background-color: #27ae60;
+    opacity: 0.9;
+    box-shadow: var(--shadow-hover);
 }
 
 /* Responsive Design */
@@ -174,5 +216,10 @@ h1, h2, h3 {
     
     .button-container {
         justify-content: center;
+    }
+    
+    .cardProduct {
+        flex-direction: column;
+        text-align: center;
     }
 }

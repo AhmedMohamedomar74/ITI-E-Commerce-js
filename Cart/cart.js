@@ -32,10 +32,11 @@ function createProductCard(product) {
         <div>
             <h3>${product.title}</h3>
             <p>${formatPrice(product.price)}</p>
+            <button class="delete-btn">Delete</button>
         </div>
         <input type="number" min="1" value="${quantity}">
-        <button class="delete-btn">Delete</button>
-        <span>Total price: ${formatPrice(totalPrice)}</span>
+        
+        <h5>Total price: ${formatPrice(totalPrice)}</h5>
     `;
     
     return card;
@@ -52,7 +53,7 @@ function renderProducts(products) {
 
 
 function updateCartTotal() {
-    const priceElements = document.querySelectorAll(".cardProduct span");
+    const priceElements = document.querySelectorAll(".cardProduct h5");
     let total = 0;
     
     // priceElements.forEach(element => {
