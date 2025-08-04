@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="productstyle.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="products.css">
 </head>
 <body>
-    <div class="cards-container">
-  
+  <nav class="navbar">
+    <div class="logo">
+  <i class="fa-solid fa-store"></i> MyStore
 </div>
-  <button onclick="window.history.back()">⬅ Back</button>
-<script src="main.js"></script>
+    <ul class="nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="#">Prevous Order</a></li>
+    </ul>
+  </nav>
+  <section class="products-section">
+    <div id="allProductsContainer" class="products-container"></div>
+  </section>
+  <script src="products.js"></script>
 </body>
 </html>
