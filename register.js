@@ -34,11 +34,12 @@ register.addEventListener('click', function (e) {
     e.preventDefault();
     var http = new XMLHttpRequest();
     let user = {
-        user_name: userName.value.trim(),
-        email: Email.value.trim(),
-        address: Address.value.trim(),
-        tel: Tel.value.trim(),
-        password: Password.value.trim()
+        user_name: userName.value,
+        email: Email.value,
+        address: Address.value,
+        tel: Tel.value,
+        password: Password.value,
+        key : "customer"
     };
 
     let isDouble = users.some(function (u) {

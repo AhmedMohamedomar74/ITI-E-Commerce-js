@@ -5,6 +5,9 @@ let logIn = document.getElementById('login');
 var getUserReq = new XMLHttpRequest()
 logIn.disabled = true;
 
+var adminLogin = false
+var adminKeyValue
+
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 
@@ -12,9 +15,16 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 function fetchUser(userName, pass) {
     console.log({ user: userName, pass: pass })
 
-    getUserReq.open("GET", `http://localhost:3000/users?user_name=${userName}&password=${pass}`)
+    getUserReq.open("GET", `http://localhost:3000/users?user_name=${userName}&key=customer&password=${pass}`)
     getUserReq.send()
+}
 
+
+function fetchAdmin(userName, pass,key) {
+    console.log({ admin: userName, pass: pass  , adminKey:key})
+
+    getUserReq.open("GET", `http://localhost:3000/users?user_name=${userName}&key=${key}&password=${pass}`)
+    getUserReq.send()
 }
 
 function setCookie(key, value, daysToExpire) {
@@ -31,7 +41,11 @@ logIn.addEventListener('click', function (e) {
         user: userNameConfirm.value,
         pass: passwordConfirm.value.trim()
     };
-    fetchUser(usersLog.user, usersLog.pass)
+    if (adminLogin == false) {
+        fetchUser(usersLog.user, usersLog.pass)
+    } else {
+        fetchAdmin(usersLog.user, usersLog.pass,adminKeyValue)
+    }
     // let isMatch = users.some(function (u) {
     //     return (
     //         u.user_name.toLowerCase() === usersLog.user.toLowerCase() &&
@@ -74,11 +88,15 @@ getUserReq.addEventListener("readystatechange", () => {
             alert("تم تسجيل الدخول بنجاح");
             userNameConfirm.value = '';
             passwordConfirm.value = '';
-            window.location.href = "index.html";
+            if (adminLogin == true) {
+                window.location.href = "admindashbaord.html";
+            } else {
+                window.location.href = "products.html";
+            }
         }
         else
         {
-            alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+            alert('البيانات غير صحيحه');
         }
     }
 })
@@ -97,3 +115,8 @@ function adminKey(){
     admininner.innerHTML=''
     }
 }
+
+admink.addEventListener("change", (event) => {
+    adminKeyValue =  event.target.value
+    adminLogin = true
+});

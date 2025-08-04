@@ -807,6 +807,24 @@
       "address": "sdxfsdfg",
       "tel": "sdcf",
       "password": "sadafsd"
+    },
+    {
+      "id": "93d3",
+      "user_name": "ahmed_80",
+      "email": "dsfdgfsdfghjk",
+      "address": "dsfghj",
+      "tel": "dsfghj",
+      "password": "dsfghjkl",
+      "key": "customer"
+    },
+    {
+      "id": "bc98",
+      "user_name": "Ahmed_Mohamed_Omar",
+      "email": "ahmedmohamedomar78@gmail.com",
+      "address": "bns",
+      "tel": "01158872274",
+      "password": "qwertyu",
+      "key": "adminEcommerce"
     }
   ],
   "shipping_methods": [
