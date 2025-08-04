@@ -2,25 +2,11 @@
 let userNameConfirm = document.getElementById('userNameconfirm');
 let passwordConfirm = document.getElementById('passwordConfirm');
 let logIn = document.getElementById('login');
-var getUserReq = new XMLHttpRequest();
-let admink=document.getElementById('adminK');
-let admininner=document.getElementById('admin');
-
-function adminKey(){
-    if(admink.style.display=='block'){
-    admink.style.display='none';
-    admininner.innerHTML='login as admin'
-    }
-    else{
-    admink.style.display='block';
-    admininner.innerHTML=''
-    }
-}
-
-
+var getUserReq = new XMLHttpRequest()
 logIn.disabled = true;
 
 let users = JSON.parse(localStorage.getItem('users')) || [];
+
 
 
 function fetchUser(userName, pass) {
@@ -29,6 +15,13 @@ function fetchUser(userName, pass) {
     getUserReq.open("GET", `http://localhost:3000/users?user_name=${userName}&password=${pass}`)
     getUserReq.send()
 
+}
+
+function setCookie(key, value, daysToExpire) {
+    const date = new Date();
+    date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = key + "=" + value + ";" + expires + ";path=/";
 }
 
 logIn.addEventListener('click', function (e) {
@@ -76,7 +69,8 @@ getUserReq.addEventListener("readystatechange", () => {
         console.log(user)
         if (user.length) {
             console.log(user[0])
-            sessionStorage.setItem("user",JSON.stringify(user[0]))
+            // sessionStorage.setItem("user",JSON.stringify(user[0]))
+            setCookie("userId",user[0].id,30)
             alert("تم تسجيل الدخول بنجاح");
             userNameConfirm.value = '';
             passwordConfirm.value = '';
@@ -88,3 +82,18 @@ getUserReq.addEventListener("readystatechange", () => {
         }
     }
 })
+
+
+let admink=document.getElementById('adminK');
+let admininner=document.getElementById('admin')
+
+function adminKey(){
+    if(admink.style.display=='block'){
+    admink.style.display='none';
+    admininner.innerHTML='login as admin'
+    }
+    else{
+    admink.style.display='block';
+    admininner.innerHTML=''
+    }
+}
