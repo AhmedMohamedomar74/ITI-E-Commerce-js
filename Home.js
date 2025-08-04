@@ -58,28 +58,35 @@ function loadProductsByCategory(categoryId, container) {
 console.log(products[1].image);
 
       // نعرض فقط 4 منتجات
-      products.slice(0, 4).forEach(product => {
-        const card = document.createElement("div");
-        const imginner=document.createElement("img")
+    products.slice(0, 4).forEach(product => {
+  const card = document.createElement("div");
+  card.className = "card";
 
-        imginner.setAttribute('src',`${product.image}`)
-        imginner.setAttribute('alt',`${product.title}`)
-        card.className = "card";
-        card.innerHTML = `
-    
-          <h5>${product.title}</h5>
-          <p>${product.price}$</p>
-        `;
-        card.appendChild(imginner)
-        container.appendChild(card);
-      });
+  const img = document.createElement("img");
+  img.src = product.image;
+  img.alt = product.title;
+
+  const title = document.createElement("h5");
+  title.textContent = product.title;
+
+  const price = document.createElement("p");
+  price.textContent = `${product.price}$`;
+
+  const link = document.createElement("a");
+  link.href = `product-details.html?id=${product.id}`;
+  link.textContent = "View Details";
+  link.className = "details-link";
+  card.appendChild(img);
+  card.appendChild(title);
+  card.appendChild(price);
+  card.appendChild(link);
+  container.appendChild(card);
+});
     }
   };
-
   xhr.send();
 }
 
-//  تشغيل عند تحميل الصفحة
 loadCategoriesWithProducts();
 
 

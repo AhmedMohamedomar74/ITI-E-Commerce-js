@@ -1,2 +1,0 @@
-# ITI-E-Commerce js
-
