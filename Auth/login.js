@@ -84,7 +84,7 @@ getUserReq.addEventListener("readystatechange", () => {
         if (user.length) {
             console.log(user[0])
             // sessionStorage.setItem("user",JSON.stringify(user[0]))
-            setCookie("userId",user[0].id,30)
+            
             alert("تم تسجيل الدخول بنجاح");
             userNameConfirm.value = '';
             passwordConfirm.value = '';
@@ -92,6 +92,7 @@ getUserReq.addEventListener("readystatechange", () => {
                 window.location.href = "./../admin/order.html";
             } else {
                 window.location.href = "./../customer/Home.html";
+                setCookie("userId",user[0].id,30)
             }
         }
         else
