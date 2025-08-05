@@ -15,6 +15,9 @@
 }
 
 /* ===== Common Styles ===== */
+.d-flex{
+    display: flex;
+}
 #cartContainer, #wishlistContainer {
     display: flex;
     flex-direction: column;
@@ -23,6 +26,8 @@
     max-width: 800px;
     margin: 0 auto;
     font-family: var(--font-main);
+    background-color: #fff;
+    box-shadow:#bdbdbd65 0px 2px 6px 0px;
 }
 
 .button-container {
@@ -77,7 +82,7 @@
 .cardProduct, .cardwishlist {
     display: flex;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     padding: 20px;
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -150,14 +155,15 @@
     margin: 0;
 }
 #TotalPrcieContainet {
-    margin: 20px 0;
+    margin: 20px;
+    margin-top: 0;
     padding: 15px;
     background-color: var(--bg-light);
-    border-radius: 8px;
+    /* border-radius: 8px; */
     border: 1px solid var(--border-color);
-    text-align: right;
     font-size: 18px;
     font-weight: bold;
+    width: 50%;
 }
 
 #TotalPrcieContainet span {

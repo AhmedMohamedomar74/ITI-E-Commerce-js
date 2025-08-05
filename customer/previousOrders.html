@@ -5,8 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="./previousOrder.css" rel="stylesheet">
+    <link rel="stylesheet" href="Homestyle.css">
   </head>
   <body>
+     <!-- Navbar -->
+    <nav class="navbar" id="navbar_">
+      <div class="logo">
+        <i class="fa-solid fa-store"></i> MyStore
+      </div>
+      <!-- bars -->
+       <div class="d-noneB">
+         <i class="fa-solid fa-bars" id="bars"></i>
+       </div>
+      <!-- Navigation Links -->
+      <ul class="nav-links d-hide" id="navLinks">
+        <li><a href="./Home.html">Home</a></li>
+        <li><a href="./products.html">Products</a></li>
+        <li><a href="./previousOrders.html">Prevous Order</a></li>
+      </ul>
+      <!-- Categories Dropdown -->
+      <div class="datalist-container d-hide" id="categoryBox">
+        <input list="categories" id="categoryInput" placeholder="Choose category...">
+        <datalist id="categories">
+          <!-- الكاتيجوري هتيجي من JS -->
+        </datalist>
+      </div>
+      <!-- Icons Section -->
+      <div class="icons d-hide"  id="iconsBox">
+          <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+          <a href="./wishlist.html"><i class="fas fa-heart"></i></a>
+      </div>
+    </nav>
     <div id="orders-list">
         <button class="cancel-btn" onclick="history.back()" style="margin-bottom: 20px;">Back</button>
     </div>

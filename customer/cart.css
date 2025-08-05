@@ -7,7 +7,9 @@
     max-width: 800px;
     margin: 0 auto;
 }
-
+.d-flex{
+    display: flex;
+}
 /* Individual product card styling - full width */
 .cardProduct {
     display: flex;

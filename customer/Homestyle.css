@@ -1,6 +1,6 @@
 :root {
   --color-primary:#09c;      /* أزرق رئيسي */
-  --color-secondary: #364b60;    /* رمادي غامق */
+  --color-secondary: #1d2834;    /* رمادي غامق */
   --color-accent: #5dade2;       /* أزرق فاتح */
   --bg-color: #f9f9f9;           /* خلفية فاتحة */
   --text-color: #222;
@@ -13,7 +13,11 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: var(--bg-color);
+  /* background: var(--bg-color); */
+  background-color: #E3E6E6;
+}
+.mx-50{
+  margin: 10px 10%;
 }
 
 .navbar {
@@ -118,28 +122,30 @@ padding-right: 10px;
 /* Products */
 .category-section {
   margin-bottom: 40px;
-  background:var(--card-bg);
+  background:#fff;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   margin-top: 15px;
   padding: 30px;
 }
 .card {
   background:var(--bg-color);
   border-radius: 8px;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   padding: 10px;
-  text-align: center;
+  /* text-align: center; */
   transition: var(--transition);
 }
 .card:hover {
-  transform: scale(1.03);
+  /* transform: scale(1.03); */
+  box-shadow: var(--shadow);
+
 }
 .card img {
   width: 100%;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   border-bottom: 1px solid var(--bg-color);
   margin-bottom: 10px;
 }
@@ -147,6 +153,7 @@ padding-right: 10px;
 .category-section h2 {
   margin-bottom: 15px;
   color: var(--color-secondary);
+  text-transform: capitalize;
 }
 
 .category-products {
@@ -170,7 +177,7 @@ padding-right: 10px;
 
 .details-link:hover {
   background: var(--color-accent);
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
 }
 .loading-spinner {
   border: 6px solid var(--bg-color);
@@ -181,11 +188,40 @@ padding-right: 10px;
   animation: spin 1s linear infinite;
   margin: 30px auto;
 }
-
+.d-noneB{
+  display: none;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-
+@media (max-width:850px) {
+   .navbar{
+    position: relative;
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: flex-start;
+    align-items: flex-start;
+   }
+  .d-noneB{
+   display: block;
+    color: var(--color-accent);
+    font-size: 1.7rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 2rem;
+    cursor: pointer;
+  }
+  .d-hide{
+    display: none;
+  }
+  .nav-links,
+.datalist-container,
+.icons {
+  
+  margin: 10px 0;
+  text-align: center; /* أو أي محاذاة تحبيها */
+}
+}
 

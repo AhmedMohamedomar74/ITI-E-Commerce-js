@@ -186,3 +186,10 @@ body {
 #productForm button:hover {
   background: var(--lite);
 }
+ @media (max-width:660px) {
+  #header {
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+ }

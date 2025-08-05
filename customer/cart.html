@@ -4,11 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Homestyle.css">
     <link rel="stylesheet" href="./style.css" >
+    <!-- <link rel="stylesheet" href="cart.css"> -->
+
 </head>
+<style>
+    a{
+        text-decoration: none;
+        color: #313131;
+        font-weight: 300;
+        font-size: 1rem;
+    }
+    button{
+        margin-left: 10px;
+        border: 1px solid #eee;
+        color:#fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 2rem;
+        font-size: 1rem;
+        background-color: rgb(253, 187, 64);
+        cursor: pointer;
+        margin-top: 1rem;
+        color: #313131;
+        width: 50%;
+    }
+    button:hover{
+        background-color: rgb(255, 199, 94);
+    }
+    a:hover{
+        color: rgb(0, 183, 255);
+    }
+    .freeord{
+        color: #313131;
+        font-weight: 200;
+        font-size: 1rem;
+    }
+    .check2{
+        color: green;
+        margin-right: 0.5rem;
+    }
+    @media (max-width:880px) {
+        .d-flex{
+            flex-direction: column;
+        }
+        #cartContainer{
+            width: 80%;
+            margin: 0;
+        }
+        #TotalPrcieContainet{
+            width: 75%;
+            margin: 0;
+            margin-top: 1rem;
+        }
+    }
+</style>
 <body>
-    <div id="TotalPrcieContainet"></div>
-    <div id="cartContainer"></div>
+     <!-- Navbar -->
+    <nav class="navbar" id="navbar_">
+      <div class="logo">
+        <i class="fa-solid fa-store"></i> MyStore
+      </div>
+      <!-- bars -->
+       <div class="d-noneB">
+         <i class="fa-solid fa-bars" id="bars"></i>
+       </div>
+      <!-- Navigation Links -->
+      <ul class="nav-links d-hide" id="navLinks">
+        <li><a href="./Home.html">Home</a></li>
+        <li><a href="./products.html">Products</a></li>
+        <li><a href="./previousOrders.html">Prevous Order</a></li>
+      </ul>
+      <!-- Categories Dropdown -->
+      <div class="datalist-container d-hide" id="categoryBox">
+        <input list="categories" id="categoryInput" placeholder="Choose category...">
+        <datalist id="categories">
+          <!-- الكاتيجوري هتيجي من JS -->
+        </datalist>
+      </div>
+      <!-- Icons Section -->
+      <div class="icons d-hide"  id="iconsBox">
+          <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+          <a href="./wishlist.html"><i class="fas fa-heart"></i></a>
+      </div>
+    </nav>
+    <div class="d-flex mx-50">
+      <div id="cartContainer"></div>
+  
+      <div id="TotalPrcieContainet" style="padding-top: 2rem; padding-left: 3rem;"></div>
+
+       
+
+    </div>
+    
     <script src="./cart.js"></script>
 </body>
 </html>

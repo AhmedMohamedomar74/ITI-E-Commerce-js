@@ -6,9 +6,10 @@
   <title>All Products</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="products.css">
+  <link rel="stylesheet" href="Homestyle.css">
 </head>
 <body>
-  <nav class="navbar">
+  <!-- <nav class="navbar">
     <div class="logo">
   <i class="fa-solid fa-store"></i> MyStore
 </div>
@@ -17,10 +18,40 @@
       <li><a href="./products.html">Products</a></li>
       <li><a href="./previousOrders.html">Prevous Order</a></li>
     </ul>
-  </nav>
-  <section class="products-section">
+  </nav> -->
+  <!-- Navbar -->
+    <nav class="navbar" id="navbar_">
+      <div class="logo">
+        <i class="fa-solid fa-store"></i> MyStore
+      </div>
+      <!-- bars -->
+       <div class="d-noneB">
+         <i class="fa-solid fa-bars" id="bars"></i>
+       </div>
+      <!-- Navigation Links -->
+      <ul class="nav-links d-hide" id="navLinks">
+        <li><a href="./Home.html">Home</a></li>
+        <li><a href="./products.html">Products</a></li>
+        <li><a href="./previousOrders.html">Prevous Order</a></li>
+      </ul>
+      <!-- Categories Dropdown -->
+      <div class="datalist-container d-hide" id="categoryBox">
+        <input list="categories" id="categoryInput" placeholder="Choose category...">
+        <datalist id="categories">
+          <!-- الكاتيجوري هتيجي من JS -->
+        </datalist>
+      </div>
+      <!-- Icons Section -->
+      <div class="icons d-hide"  id="iconsBox">
+          <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+          <a href="./wishlist.html"><i class="fas fa-heart"></i></a>
+      </div>
+    </nav>
+  <section class="products-section mx-50">
     <div id="allProductsContainer" class="products-container"></div>
   </section>
+  
+   
   <script src="products.js"></script>
 </body>
 </html>

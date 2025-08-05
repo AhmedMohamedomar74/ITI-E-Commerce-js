@@ -72,7 +72,15 @@ function updateCartTotal() {
         total += Number(priceOneCard)
     }
     
-    totalPriceContainer.innerHTML = `<span>Total Price: ${formatPrice(total)}</span>`;
+    totalPriceContainer.innerHTML = `
+        <p class="freeord">
+        <i class="fa-solid fa-circle-check check2"></i>Your order qualifies for FREE Shipping</p>
+        <span>Total Price: ${formatPrice(total)}</span>
+        <br/>
+        <button>process to by</button>
+        
+
+    `;
 }
 
 function addActionButtons() {

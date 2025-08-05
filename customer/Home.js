@@ -1,7 +1,19 @@
 const datalist = document.getElementById("categories");
 const categoryInput = document.getElementById("categoryInput");
 const productsContainer = document.getElementById("products");
-
+let bars =document.getElementById('bars');
+  let navLinks = document.getElementById('navLinks');
+  let categoryBox = document.getElementById('categoryBox');
+  let iconsBox = document.getElementById('iconsBox');
+  // let navbar_=document.getElementById('navbar_');
+bars.addEventListener('click',function(){
+ navLinks.classList.toggle('d-hide');
+    categoryBox.classList.toggle('d-hide');
+    iconsBox.classList.toggle('d-hide');
+ 
+      navbar_.style.display='block'
+   
+})
 //  تحميل الكاتيجوري
 const xhr = new XMLHttpRequest();
 xhr.open("GET", "http://localhost:3000/categories", true);
@@ -148,7 +160,6 @@ function loadCategoriesWithProducts() {
               link.href = `product-details.html?id=${product.id}`;
               link.textContent = "View Details";
               link.className = "details-link";
-
               card.appendChild(img);
               card.appendChild(productTitle);
               card.appendChild(price);

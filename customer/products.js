@@ -1,3 +1,17 @@
+let bars =document.getElementById('bars');
+  let navLinks = document.getElementById('navLinks');
+  let categoryBox = document.getElementById('categoryBox');
+  let iconsBox = document.getElementById('iconsBox');
+  // let navbar_=document.getElementById('navbar_');
+bars.addEventListener('click',function(){
+ navLinks.classList.toggle('d-hide');
+    categoryBox.classList.toggle('d-hide');
+    iconsBox.classList.toggle('d-hide');
+ 
+      navbar_.style.display='block'
+   
+})
+
 const productsContainer = document.getElementById("allProductsContainer");
 
 const xhr = new XMLHttpRequest();
