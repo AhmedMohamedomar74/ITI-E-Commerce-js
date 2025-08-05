@@ -1,4 +1,28 @@
-/* ===== Order Display Styles ===== */
+:root {
+  --color-primary: #3498db;      /* Blue primary */
+  --color-secondary: #2c3e50;    /* Dark gray */
+  --color-accent: #5dade2;       /* Light blue */
+  --color-danger: #ff3b30;       /* Red for delete button */
+  --bg-color: #f9f9f9;           /* Light background */
+  --bg-light: #f8f9fa;           /* Lighter background */
+  --text-color: #222;
+  --text-light: #666;
+  --border-color: #e0e0e0;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --font-main: 'Poppins', sans-serif;
+  --transition: all 0.3s ease-in-out;
+}
+
+/* ===== Base Styles ===== */
+body {
+  background-color: var(--bg-color);
+  font-family: var(--font-main);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
 #orders-list {
   display: flex;
   flex-direction: column;
@@ -6,9 +30,16 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: var(--font-main);
 }
 
+h1 {
+  color: var(--color-secondary);
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== Order Container Styles ===== */
 .order-container {
   background-color: white;
   border-radius: 8px;
@@ -64,6 +95,7 @@
   color: #0c5460;
 }
 
+/* ===== Shipping Info Styles ===== */
 .shipping-info {
   background-color: var(--bg-light);
   padding: 15px;
@@ -79,6 +111,13 @@
   font-size: 16px;
 }
 
+.shipping-info div:not(.shipping-method) {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ===== Products Grid Styles ===== */
 .products-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -93,6 +132,7 @@
   display: flex;
   flex-direction: column;
   transition: var(--transition);
+  background-color: white;
 }
 
 .product-card:hover {
@@ -121,8 +161,16 @@
   color: var(--color-primary);
   font-weight: 600;
   font-size: 16px;
+  margin-bottom: 5px;
 }
 
+.product-quantity {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-top: 5px;
+}
+
+/* ===== Total Price Styles ===== */
 .total-price {
   font-size: 18px;
   font-weight: 600;
@@ -139,82 +187,56 @@
   margin-left: 5px;
 }
 
-/* Coupon Section Styles */
-#cupponContainer {
+/* ===== Button Styles (to match cart) ===== */
+.button-container {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
 }
 
-#cupponContainer input {
-  padding: 10px 15px;
-  border: 1px solid var(--border-color);
+.submit-btn, .cancel-btn {
+  padding: 12px 24px;
   border-radius: 4px;
-  font-family: var(--font-main);
-  flex-grow: 1;
-  max-width: 300px;
-}
-
-#cupponContainer button {
-  padding: 10px 20px;
-  background-color: var(--color-accent);
-  color: white;
-  border: none;
-  border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
-  font-family: var(--font-main);
   transition: var(--transition);
-}
-
-#cupponContainer button:hover {
-  background-color: var(--color-primary);
-}
-
-#cupponContainer span {
-  font-size: 14px;
-  margin-left: 10px;
-  color: var(--color-danger);
-}
-
-/* Shipping Method Selector */
-#ChippingListContainer {
-  margin-bottom: 20px;
-}
-
-#ChippingListContainer label {
-  display: block;
-  margin-bottom: 8px;
+  border: none;
   font-weight: 500;
-  color: var(--text-color);
-}
-
-#ChippingListContainer select {
-  padding: 10px 15px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  flex: 1;
+  max-width: 200px;
+  text-align: center;
   font-family: var(--font-main);
-  width: 100%;
-  max-width: 300px;
-  background-color: white;
 }
 
-
-/* Add these styles to your existing CSS file */
-.product-quantity {
-  font-size: 14px;
-  color: var(--text-light);
-  margin-top: 5px;
+.submit-btn {
+  background-color: var(--color-primary);
+  color: white;
 }
 
-/* Optional: Add a small indicator for the total price per product */
-.product-total {
-  font-size: 14px;
-  color: var(--color-secondary);
-  margin-top: 5px;
-  font-weight: 500;
+.submit-btn:hover {
+  background-color: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
-/* Responsive Adjustments */
+
+.cancel-btn {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.cancel-btn:hover {
+  background-color: var(--border-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.submit-btn:active, .cancel-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== Responsive Adjustments ===== */
 @media (max-width: 768px) {
   .products-container {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -228,23 +250,12 @@
     gap: 10px;
   }
 
-  #cupponContainer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #cupponContainer input,
-  #ChippingListContainer select {
-    max-width: 100%;
-    width: 100%;
+  #orders-list {
+    padding: 15px;
   }
 }
 
 @media (max-width: 400px) {
-  #orders-list {
-    padding: 15px;
-  }
-
   .order-container {
     padding: 15px;
   }

@@ -92,7 +92,7 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
-.cardProduct img, .cardwishlist img {
+.cardProduct p img, .cardwishlist p img {
     width: 80px;
     height: 80px;
     object-fit: contain;
@@ -140,15 +140,15 @@
     font-size: 14px;
 }
 
-.cardProduct span, .cardwishlist span {
+.cardProduct  h5, .cardwishlist  h5 {
     position: absolute;
     bottom: 15px;
-    left: 20px;
+    right: 20px;
     font-size: 14px;
     color: var(--text-light);
     font-weight: normal;
+    margin: 0;
 }
-
 #TotalPrcieContainet {
     margin: 20px 0;
     padding: 15px;
@@ -174,7 +174,7 @@
         padding: 15px;
     }
     
-    .cardProduct img, .cardwishlist img {
+    .cardProduct p img, .cardwishlist p img {
         margin-right: 0;
         margin-bottom: 15px;
     }
@@ -203,7 +203,7 @@
         padding: 12px;
     }
     
-    .cardProduct img, .cardwishlist img {
+    .cardProduct p img, .cardwishlist p img {
         width: 60px;
         height: 60px;
     }

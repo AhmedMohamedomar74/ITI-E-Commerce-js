@@ -11,19 +11,22 @@ function formatPrice(price) {
 
 function createProductCard(product) {
     const card = document.createElement("div");
-    card.setAttribute("class","cardwishlist")
+    card.setAttribute("class", "cardwishlist")
     // card.setAttribute("data-productPrice",`${product.price}`)
     card.dataset.productId = product.id
     // card.setAttribute("data-productId",`${product.id}`)    
     card.innerHTML = `
+        <p> <a href="./product-details.html?id=${product.id}">
         <img src="${product.image}" alt="${product.title}">
+        </a>
+        </p>
         <div>
             <h3>${product.title}</h3>
             <p>${formatPrice(product.price)}</p>
         </div>
         <button class="delete-btn">Delete</button>
     `;
-    
+
     return card;
 }
 
@@ -42,11 +45,11 @@ function renderProducts(products) {
 function addActionButtons() {
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
-    
+
     buttonContainer.innerHTML = `
         <button class="cancel-btn">Cancel</button>
     `;
-    
+
     cartContainer.appendChild(buttonContainer);
     setupEventListeners();
 }
@@ -66,10 +69,10 @@ function setupDeleteListeners() {
             const parentCard = e.target.closest('.cardwishlist');
             const productId = parentCard.dataset.productId;
             console.log(productId)
-            
+
             let products = getCartData();
             products = products.filter(product => product.id != productId);
-            
+
             localStorage.removeItem("wishlist")
             localStorage.setItem("wishlist", JSON.stringify(products));
             parentCard.remove();

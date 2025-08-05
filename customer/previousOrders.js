@@ -134,7 +134,12 @@ function createProductCard(product) {
   quantity.className = 'product-quantity';
   quantity.textContent = `Quantity: ${product.quantity || 1}`;
   
-  card.appendChild(image);
+
+  const link = document.createElement("a")
+  link.href = `./product-details.html?id=${product.id}`
+
+  link.appendChild(image)
+  card.appendChild(link);
   card.appendChild(title);
   card.appendChild(price);
   card.appendChild(quantity);

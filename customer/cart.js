@@ -28,7 +28,9 @@ function createProductCard(product) {
     const totalPrice = calculateProductTotal(product.price, quantity);
     
     card.innerHTML = `
+        <p> <a href="./product-details.html?id=${product.id}">
         <img src="${product.image}" alt="${product.title}">
+        </a>
         <div>
             <h3>${product.title}</h3>
             <p>${formatPrice(product.price)}</p>
@@ -102,7 +104,7 @@ function setupQuantityListeners() {
             const parentCard = e.target.closest('.cardProduct');
             const price = parseFloat(parentCard.dataset.productPrice);
             const quantity = parseInt(e.target.value);
-            const totalSpan = parentCard.querySelector('span');
+            const totalSpan = parentCard.querySelector('h5');
             
             totalSpan.textContent = `Total price: ${formatPrice(calculateProductTotal(price, quantity))}`;
             console.log(totalSpan.textContent)
