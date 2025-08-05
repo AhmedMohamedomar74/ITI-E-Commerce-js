@@ -13,6 +13,25 @@
     display: none;
 
 }
+.error-msg {
+  color: red;
+  font-size: 12px;
+  display: none;
+}
+/* input {
+  display: block;
+  margin-bottom: 5px;
+  padding: 6px;
+  width: 250px;
+  border: 2px solid #ccc;
+} */
+input.valid {
+  border-color: green;
+}
+input.invalid {
+  border-color: red;
+}
+
 body{
     background-image: linear-gradient(to right, #fcfafb , #c5c5c5); ;
 }

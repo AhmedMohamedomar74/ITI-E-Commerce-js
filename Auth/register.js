@@ -5,8 +5,49 @@ let Tel = document.getElementById('tel');
 let Password = document.getElementById('password');
 let register = document.getElementById('register');
 
-var fetchAlluserReq = new XMLHttpRequest()
-var users = []
+var fetchAlluserReq = new XMLHttpRequest();
+var users = [];
+let userNameError = document.getElementById('userNameError');
+let emailError = document.getElementById('emailError');
+let addressError = document.getElementById('addressError');
+let telError = document.getElementById('telError');
+let passwordError = document.getElementById('passwordError');
+const regexPatterns = {
+  userName: /^[a-zA-Z ]{3,20}$/,
+  email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  address: /^.{3,100}$/,
+  tel: /^01[0-2,5]{1}[0-9]{8}$/,
+  password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/
+};
+
+function validateInput(input, pattern, errorMsg, errorElement, message) {
+  if (!pattern.test(input.value.trim())) {
+    input.classList.add('invalid');
+    input.classList.remove('valid');
+    errorElement.innerText = message;
+    errorElement.style.display = 'block';
+    return false;
+  } else {
+    input.classList.remove('invalid');
+    input.classList.add('valid');
+    errorElement.style.display = 'none';
+    return true;
+  }
+}
+
+function checkInputsFilled2() {
+  let validUser = validateInput(userName, regexPatterns.userName, userNameError, userNameError, "الاسم يجب أن يكون بين 3 و 20 حرفًا");
+  let validEmail = validateInput(Email, regexPatterns.email, emailError, emailError, "البريد غير صالح");
+  let validAddr = validateInput(Address, regexPatterns.address, addressError, addressError, "العنوان لا يقل عن 3 حروف");
+  let validTel = validateInput(Tel, regexPatterns.tel, telError, telError, "رقم الهاتف غير صالح (مثل: 01012345678)");
+  let validPass = validateInput(Password, regexPatterns.password, passwordError, passwordError, "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم");
+
+  register.disabled = !(validUser && validEmail && validAddr && validTel && validPass);
+}
+
+[userName, Email, Address, Tel, Password].forEach(input => {
+  input.addEventListener('input', checkInputsFilled2);
+});
 // register.disabled = true;
 // console.log(register)
 
